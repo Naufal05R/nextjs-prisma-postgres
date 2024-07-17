@@ -3,7 +3,17 @@ import ContactTable from "@/components/contact-table";
 import Search from "@/components/search";
 import React from "react";
 
-const ContactPage = () => {
+const ContactPage = ({
+  searchParams,
+}: {
+  searchParams?: {
+    query?: string;
+    page?: string;
+  };
+}) => {
+  const query = searchParams?.query || "";
+  const currentPage = Number(searchParams?.page) || 1;
+
   return (
     <div className="mx-auto mt-5 max-w-screen-md">
       <hgroup className="mb-5 flex items-center justify-between gap-1">
@@ -11,7 +21,7 @@ const ContactPage = () => {
         <CreateButton />
       </hgroup>
       <section className="max-w-full overflow-x-scroll">
-        <ContactTable />
+        <ContactTable query={query} currentPage={currentPage} />
       </section>
     </div>
   );

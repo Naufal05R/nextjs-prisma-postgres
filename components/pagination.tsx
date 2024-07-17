@@ -31,11 +31,11 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
     isActive: boolean;
   }) => {
     const className = cn(
-      "flex h-10 w-10 items-center justify-center text-sm border",
+      "flex h-10 w-10 items-center justify-center text-sm border text-blue-500",
       {
         "rounded-l-sm": position === "first" || position === "single",
         "rounded-r-sm": position === "last" || position === "single",
-        "z-10 bg-blue-100 border-blue-500 text-white": isActive,
+        "z-10 bg-blue-100 border-blue-500 text-gray-800": isActive,
         "hover:bg-gray-100": !isActive && position !== "middle",
         "text-gray-300 pointer-event-none": position === "middle",
       },

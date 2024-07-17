@@ -1,4 +1,5 @@
 import { getContact } from "@/lib/data";
+import { formatDate } from "@/lib/utils";
 
 const ContactTable = async () => {
   const contacts = await getContact();
@@ -9,8 +10,8 @@ const ContactTable = async () => {
         <tr>
           <th className="px-6 py-3">#</th>
           <th className="px-6 py-3">Name</th>
-          <th className="px-6 py-3 text-nowrap">Phone Number</th>
-          <th className="px-6 py-3 text-nowrap">Created At</th>
+          <th className="text-nowrap px-6 py-3">Phone Number</th>
+          <th className="text-nowrap px-6 py-3">Created At</th>
           <th className="px-6 py-3 text-center">Actions</th>
         </tr>
       </thead>
@@ -20,7 +21,9 @@ const ContactTable = async () => {
             <td className="px-6 py-3">{index + 1}</td>
             <td className="px-6 py-3">{contact.name}</td>
             <td className="px-6 py-3">{contact.phone}</td>
-            <td className="px-6 py-3">{contact.createdAt.toString()}</td>
+            <td className="px-6 py-3">
+              {formatDate(contact.createdAt.toString())}
+            </td>
             <td></td>
           </tr>
         ))}

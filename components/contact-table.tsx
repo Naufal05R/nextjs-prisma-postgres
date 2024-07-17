@@ -1,5 +1,6 @@
 import { getContact } from "@/lib/data";
 import { formatDate } from "@/lib/utils";
+import { EditButton, DeleteButton } from "@/components/buttons";
 
 const ContactTable = async () => {
   const contacts = await getContact();
@@ -24,7 +25,10 @@ const ContactTable = async () => {
             <td className="px-6 py-3">
               {formatDate(contact.createdAt.toString())}
             </td>
-            <td></td>
+            <td className="flex justify-center gap-1 py-3">
+              <EditButton />
+              <DeleteButton />
+            </td>
           </tr>
         ))}
       </tbody>

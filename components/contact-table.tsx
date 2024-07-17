@@ -9,8 +9,8 @@ const ContactTable = async () => {
         <tr>
           <th className="px-6 py-3">#</th>
           <th className="px-6 py-3">Name</th>
-          <th className="px-6 py-3">Phone Number</th>
-          <th className="px-6 py-3">Created At</th>
+          <th className="px-6 py-3 text-nowrap">Phone Number</th>
+          <th className="px-6 py-3 text-nowrap">Created At</th>
           <th className="px-6 py-3 text-center">Actions</th>
         </tr>
       </thead>

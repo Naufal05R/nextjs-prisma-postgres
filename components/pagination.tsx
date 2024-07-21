@@ -40,6 +40,37 @@ const PaginationArrow = ({
   );
 };
 
+const PaginationNumber = ({
+  page,
+  href,
+  position,
+  isActive,
+}: {
+  page: number | string;
+  href: string;
+  position?: "first" | "last" | "middle" | "single";
+  isActive: boolean;
+}) => {
+  const className = cn(
+    "flex h-10 w-10 items-center justify-center text-sm border text-blue-500",
+    {
+      "rounded-l-sm": position === "first" || position === "single",
+      "rounded-r-sm": position === "last" || position === "single",
+      "z-10 bg-blue-100 border-blue-500 text-gray-800": isActive,
+      "hover:bg-gray-100": !isActive && position !== "middle",
+      "text-gray-300 pointer-event-none": position === "middle",
+    },
+  );
+
+  return isActive && position === "middle" ? (
+    <div className={className}>{page}</div>
+  ) : (
+    <Link href={href} className={className}>
+      {page}
+    </Link>
+  );
+};
+
 const Pagination = ({ totalPages }: { totalPages: number }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -53,37 +84,6 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
   };
 
   const allPages = generatePagination(currentPage, totalPages);
-
-  const PaginationNumber = ({
-    page,
-    href,
-    position,
-    isActive,
-  }: {
-    page: number | string;
-    href: string;
-    position?: "first" | "last" | "middle" | "single";
-    isActive: boolean;
-  }) => {
-    const className = cn(
-      "flex h-10 w-10 items-center justify-center text-sm border text-blue-500",
-      {
-        "rounded-l-sm": position === "first" || position === "single",
-        "rounded-r-sm": position === "last" || position === "single",
-        "z-10 bg-blue-100 border-blue-500 text-gray-800": isActive,
-        "hover:bg-gray-100": !isActive && position !== "middle",
-        "text-gray-300 pointer-event-none": position === "middle",
-      },
-    );
-
-    return isActive && position === "middle" ? (
-      <div className={className}>{page}</div>
-    ) : (
-      <Link href={href} className={className}>
-        {page}
-      </Link>
-    );
-  };
 
   return (
     <div className="inline-flex">
